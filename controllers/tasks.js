@@ -1,7 +1,13 @@
 const Task = require("../models/Task");
 
-const getAllTasks = (req, res) => {
-    res.send("obtained all tasks.");
+const getAllTasks = async (req, res) => {
+    try{
+        const allTask = await Task.find({});
+        res.status(200).json(allTask);
+    } catch (err){
+        res.status(500).json(err);
+
+    }
 };
 
 const createTask = async (req, res) => {
@@ -15,16 +21,62 @@ const createTask = async (req, res) => {
     
 };
 
-const getSingleTask = (req, res) => {
-    res.send("obtained a task.");
+const getSingleTask = async (req, res) => {
+    try {
+        const getSingleTask = await Task.findOne({ _id: req.params.id });
+
+        if(!getSingleTask) {
+            //return res.status(404).json('not found');
+            return res.status(404).json(`_id:${req.parames.id}does not exist.`);
+            console.log("here");
+        }
+        res.status(200).json(Task.getSingleTask);
+        
+        console.log(getSingleTask.name);
+    } catch (err){
+        res.status(500).json(err);
+
+    }
 };
 
-const updateTask = (req, res) => {
-    res.send("updated a task.");
+const updateTask = async (req, res) => {
+    try {
+        const updateTask = await Task.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body,
+            {
+                new: true
+            }
+        );
+
+        if(!updateTask) {
+            //return res.status(404).json('not found');
+            return res.status(404).json(`_id:${req.parames.id} does not exist.`);
+        }
+        res.status(200).json(updateTask);
+        
+        console.log(updateTask.name);
+    } catch (err){
+        res.status(500).json(err);
+    }
 };
 
-const deleteTask = (req, res) => {
-    res.send("deleted a task.");
+const deleteTask = async (req, res) => {
+    try {
+        const deleteTask = await Task.findOneAndDelete(
+            { _id: req.params.id },            
+        );
+
+        if(!deleteTask) {
+            //return res.status(404).json('not found');
+            return res.status(404).json(`_id:${req.parames.id} does not exist.`);
+        }
+        res.status(200).json(updateTask);
+        
+        console.log(Task.findOneAndDelete.name);
+    } catch (err){
+        res.status(500).json(err);
+    }
 };
 
 module.exports = {
