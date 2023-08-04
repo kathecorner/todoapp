@@ -16,13 +16,7 @@ app.use("/api/v1/tasks", taskRoute);
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URL);
-<<<<<<< HEAD
-            app.listen(PORT, 
-                console.log("the server is running at app.js."));
-        
-=======
             app.listen(PORT, console.log("the server is running at app.js."));
->>>>>>> refs/remotes/origin/main
 
     } catch(err) {
         console.log(err);
