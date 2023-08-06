@@ -19,7 +19,7 @@ const showTasks = async () => {
         //output tasks
         const allTasks = tasks.map((task) => {
             const { completed, _id, name } = task;
-            console.log(task);
+            //console.log(task);
 
             return `<div class="single-task" ${completed && "task-completed"}">
             <h5>
@@ -52,6 +52,8 @@ showTasks(); //show all tasks
 formDOM.addEventListener("submit", async (event) => {
     event.preventDefault();
     const name = taskInputDOM.value;
+
+    console.log("aefawef" + name);
 
     try {
         await axios.post("/api/v1/tasks", { name: name });

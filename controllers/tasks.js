@@ -13,7 +13,9 @@ const getAllTasks = async (req, res) => {
 const createTask = async (req, res) => {
     try{
         const createTask = await Task.create(req.body);
-        res.status(200).json(Task.createTask);
+        console.log(createTask);
+        res.status(201).json(createTask);
+
     } catch (err){
         res.status(500).json(err);
 
