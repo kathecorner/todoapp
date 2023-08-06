@@ -5,14 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Tasks</title>
-    <link rel="style" href="style.css">
+    
+    <link rel="stylesheet" href="style.css" />
 
 </head>
 <body>
     <div class="container">
-        <h4>Edit Task</h4>
-        <div class="task-edit-id"></div>
+        <form action="" class="single-task-form">
+            <h4>Edit Tasks</h4>       
+            <div class="form-control">
+                <label>TaskID</label>
+            <p class="task-edit-id"></p>
+            </div>
+            
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="task-edit-name" />
+            </div>
+
+            <div class="form-control">
+                <label for="completed">Completed or Not</label>
+                <input type="checkbox" name="completed" class="task-edit-completed" />
+            </div>
+            <button type="submit" class="block btn task-edit-btn">Edit</button>
+            <a href="index.html" class="btn back-link">back</a>
+            <div class="form-alert"></div>
+        </form>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./editTask.js"></script>
 </body>
 </html>

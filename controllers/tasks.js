@@ -23,19 +23,19 @@ const createTask = async (req, res) => {
 
 const getSingleTask = async (req, res) => {
     try {
-        const getSingleTask = await Task.findOne({ _id: req.params.id });
+        const getSingleTask = await Task.findOne({_id: req.params.id });
+        
 
         if(!getSingleTask) {
             //return res.status(404).json('not found');
             return res.status(404).json(`_id:${req.parames.id}does not exist.`);
             console.log("here");
         }
-        res.status(200).json(Task.getSingleTask);
+        res.status(200).json(getSingleTask);
         
         console.log(getSingleTask.name);
     } catch (err){
         res.status(500).json(err);
-
     }
 };
 
